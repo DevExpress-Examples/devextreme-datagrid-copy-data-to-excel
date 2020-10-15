@@ -46,16 +46,15 @@ $(function () {
             customizeCell: function (options) {
                 let { gridCell, excelCell } = options;
                 let field = gridCell.column.dataField;
-                let data = gridCell.data;
 
                 switch (gridCell.rowType) {
                     // export header row
                     case "header":
-                        str += field + "\t";
+                        str += gridCell.column.caption + "\t";
                         break;
                     // export data row
                     case "data":
-                        str += data[field] + "\t";
+                        str += gridCell.value + "\t";
                         break;
                     // export group row
                     case "group":
