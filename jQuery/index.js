@@ -162,9 +162,4 @@ $(function () {
             }]
         }]
     }).dxDataGrid("instance");
-
-    $("#button").dxButton({
-        text: "Test",
-        onClick: () => {}
-    });
 });
