@@ -1,4 +1,4 @@
-# DataGrid - Copy to excel
+# DataGrid - Copy to Excel
 
 This example demonstrates how to copy DataGrid rows into the clipboard for pasting in Excel.
 
