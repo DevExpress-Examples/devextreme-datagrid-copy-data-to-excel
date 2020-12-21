@@ -4,8 +4,8 @@ $(function () {
         let str = "";
 
         for (let prop in data) {
-            if (data.hasOwnProperty(prop)) {
-                str += data[prop] + "\t";
+            if (data[prop] !== undefined) {
+                str += `${data[prop]}\t`;
             }
         }
 
@@ -17,9 +17,7 @@ $(function () {
     }
 
     function toolbarCopy(e) {
-        let toolbarItems = e.toolbarOptions.items;
-
-        toolbarItems.push({
+        e.toolbarOptions.items.push({
             widget: "dxButton",
             location: "after",
             options: {
@@ -44,36 +42,36 @@ $(function () {
             component: grid,
             worksheet: sheet,
             customizeCell: function (options) {
-                let { gridCell, excelCell } = options;
+                let { gridCell } = options;
                 let field = gridCell.column.dataField;
 
                 switch (gridCell.rowType) {
                     // export header row
                     case "header":
-                        str += gridCell.column.caption + "\t";
+                        str += `${gridCell.column.caption}\t`;
                         break;
                     // export data row
                     case "data":
-                        str += gridCell.value + "\t";
+                        str += `${gridCell.value}\t`;
                         break;
                     // export group row
                     case "group":
                         if (gridCell.value)
-                            str += (field + ": " + gridCell.value + " ");
+                            str += `${field}: ${gridCell.value} `;
                         
                         if (gridCell.groupSummaryItems !== undefined && gridCell.groupSummaryItems.length >= 1) {
                             gridCell.groupSummaryItems.forEach(x => {
-                                str += " " + (x.name + ": " + x.value + " ");
+                                str += ` ${x.name}: ${x.value} `;
                             });
                         }
 
-                        str += "\t";
+                        str += `\t`;
 
                         break;
                     // export groupFooter & totalFooter. Create a separate switch case if you need different actions (ie different spacing)
                     case "groupFooter":
                     case "totalFooter":
-                        str += ((gridCell.value === undefined) ? "\t" : gridCell.totalSummaryItemName + ": " + gridCell.value + "\t");
+                        str += (gridCell.value === undefined ? `\t` : `${gridCell.totalSummaryItemName}: ${gridCell.value}\t`);
 
                         break;
                     default:
@@ -83,7 +81,7 @@ $(function () {
                 }
 
                 if (field === lastColumn) {
-                    str += "\r\n";
+                    str += `\r\n`;
                 }
             }
         }).then(() => {
