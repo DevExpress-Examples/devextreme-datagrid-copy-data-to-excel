@@ -1,4 +1,7 @@
 # DataGrid - Copy to Excel
+<!-- run online -->
+**[[Run Online]](https://codecentral.devexpress.com/304642062/)**
+<!-- run online end -->
 
 This example demonstrates how to copy DataGrid rows into the clipboard for pasting in Excel.
 
