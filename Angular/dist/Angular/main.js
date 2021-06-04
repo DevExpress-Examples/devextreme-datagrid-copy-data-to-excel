@@ -307,12 +307,9 @@ const environment = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var devextreme_data_array_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! devextreme/data/array_store */ "V2fm");
-/* harmony import */ var devextreme_data_array_store__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(devextreme_data_array_store__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! devextreme/ui/notify */ "pxlC");
-/* harmony import */ var devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var devextreme_excel_exporter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! devextreme/excel_exporter */ "s3UO");
-/* harmony import */ var devextreme_excel_exporter__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(devextreme_excel_exporter__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var devextreme_data_array_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! devextreme/data/array_store */ "tJmT");
+/* harmony import */ var devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! devextreme/ui/notify */ "y9Na");
+/* harmony import */ var devextreme_excel_exporter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! devextreme/excel_exporter */ "510q");
 /* harmony import */ var exceljs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! exceljs */ "6K47");
 /* harmony import */ var exceljs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(exceljs__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../data */ "5++N");
@@ -332,7 +329,7 @@ class AppComponent {
     constructor() {
         this.copyViaExcelExport = this.copyViaExcelExport.bind(this);
         this.dataSource = {
-            store: new devextreme_data_array_store__WEBPACK_IMPORTED_MODULE_1___default.a({
+            store: new devextreme_data_array_store__WEBPACK_IMPORTED_MODULE_1__["default"]({
                 data: _data__WEBPACK_IMPORTED_MODULE_5__["data"],
                 key: "ID"
             })
@@ -347,9 +344,9 @@ class AppComponent {
             }
         }
         navigator.clipboard.writeText(str).then(() => {
-            devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2___default()("Row data copied to clipboard.", "success", 500);
+            Object(devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2__["default"])("Row data copied to clipboard.", "success", 500);
         }, () => {
-            devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2___default()("Row data was not copied. There are insufficient permissions for this action.", "error", 500);
+            Object(devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2__["default"])("Row data was not copied. There are insufficient permissions for this action.", "error", 500);
         });
     }
     toolbarCopy(e) {
@@ -413,9 +410,9 @@ class AppComponent {
         }).then(() => {
             console.log(str);
             navigator.clipboard.writeText(str).then(() => {
-                devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2___default()("Grid data copied to clipboard.", "success", 500);
+                Object(devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2__["default"])("Grid data copied to clipboard.", "success", 500);
             }, () => {
-                devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2___default()("Grid data was not copied. There are insufficient permissions for this action.", "error", 500);
+                Object(devextreme_ui_notify__WEBPACK_IMPORTED_MODULE_2__["default"])("Grid data was not copied. There are insufficient permissions for this action.", "error", 500);
             });
         });
     }
