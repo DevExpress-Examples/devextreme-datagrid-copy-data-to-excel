@@ -27,12 +27,12 @@ You can easily modify the example to achieve different tasks. For example, copy 
 - **React**
     - [App.js](React/src/App.js)
 - **NetCore**    
-    - [Index.cshtml](ASP.NET/README.md)
+    - [Readme.md](ASP.NET/README.md)
 
 ## Documentation
 
 - [DataGrid - Export Data](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/#Export_Data)
-- [DataGrid - Configuration - export](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/export/)
+- [DataGrid.export](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/export/)
 
 ## More Examples
 
