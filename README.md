@@ -7,6 +7,8 @@
 
 This example demonstrates how to copy DataGrid rows into the clipboard for pasting in Excel.
 
+![Copy data to Excel](images/copy-data-to-excel.png)
+
 The example implements two different copy actions:
 
 **1. Copy row.** The command column contains the additional "Copy row" button. Once clicked, the row data will be copied into the clipboard with the appropriate escape characters for Excel.
