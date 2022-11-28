@@ -7,7 +7,7 @@
 
 This example demonstrates how to copy DataGrid rows into the clipboard for pasting in Excel.
 
-![Copy data to Excel](images/copy-data-to-excel.png)
+![Copy data to Excel](images/copy-data-to-excel.PNG)
 
 The example implements two different copy actions:
 
