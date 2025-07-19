@@ -30,7 +30,7 @@ You can easily modify the example to achieve different tasks. For example, copy 
 - **React**
     - [App.js](React/src/App.js)
 - **NetCore**    
-    - [Readme.md](ASP.NET/README.md)
+    - [Readme.md](ASP.NET%20Core/README.md)
 
 ## Documentation
 
