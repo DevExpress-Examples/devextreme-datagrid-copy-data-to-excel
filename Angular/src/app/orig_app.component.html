@@ -1,0 +1,75 @@
+<dx-data-grid 
+            #grid
+            [dataSource]="dataSource"
+            [allowColumnResizing]="true"
+            (onToolbarPreparing)="toolbarCopy($event)">
+    <dxo-editing
+                mode="popup"
+                [allowAdding]="true"
+                [allowUpdating]="true"
+                [allowDeleting]="true"
+                [useIcons]="true">
+
+    </dxo-editing>
+    <dxo-group-panel
+                    [visible]="true">
+    </dxo-group-panel>
+    <dxo-filter-row
+                    [visible]="true">
+    </dxo-filter-row>
+    <dxo-summary>
+        <dxi-group-item
+                        column="LastName"
+                        summaryType="count"
+                        name="Count"
+                        [alignByColumn]="true">
+        </dxi-group-item>
+        <dxi-group-item
+                        column="LastName"
+                        summaryType="count"
+                        name="Count">
+        </dxi-group-item>
+        <dxi-group-item
+                        column="IsTested"
+                        summaryType="count"
+                        [showInGroupFooter]="true"
+                        name="Count"
+                        [alignByColumn]="true">
+        </dxi-group-item>
+
+        <dxi-total-item
+                        column="ID"
+                        summaryType="count"
+                        [displayFormat]="'No. of employees: {0}'"
+                        name="No. of employees">
+        </dxi-total-item>
+        <dxi-total-item
+                        column="HireDate"
+                        summaryType="count"
+                        name="Dates">
+        </dxi-total-item>        
+    </dxo-summary>
+
+    <dxi-column 
+                dataField="ID"
+                [width]="200">
+    </dxi-column>
+    <dxi-column dataField="FirstName"></dxi-column>
+    <dxi-column dataField="LastName"></dxi-column>
+    <dxi-column dataField="HireDate"></dxi-column>
+    <dxi-column 
+                dataField="Residence"
+                groupIndex="0">
+    </dxi-column>
+    <dxi-column dataField="IsTested"></dxi-column>
+    <dxi-column type="buttons">
+        <dxi-button name="edit"></dxi-button>
+        <dxi-button name="delete"></dxi-button>
+        <dxi-button
+                    hint="Copy row"
+                    icon="copy"
+                    [onClick]="rowCopy">
+        </dxi-button>
+    </dxi-column>
+
+</dx-data-grid>

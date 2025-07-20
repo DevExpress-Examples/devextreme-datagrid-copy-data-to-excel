@@ -1,50 +1,50 @@
 <!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/340354634/25.1.2%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1129779)
+![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/304642062/24.1.3%2B)
+[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T941814)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-# DevExtreme Examples Template
+# DataGrid for DevExtreme - How to copy data to Excel
 
-This is the repository template for creating new examples. 
+This example demonstrates how to copy DataGrid rows into the clipboard for pasting in Excel.
 
-Use **_Product_ for DevExtreme - _Task_** template for a title. 
+![Copy data to Excel](images/copy-data-to-excel.PNG)
 
-Describe the solved task in this section.
+The example implements two different copy actions:
 
-Put a screenshot/gif that illustrates the result here.
+**1. Copy row.** The command column contains the additional "Copy row" button. Once clicked, the row data will be copied into the clipboard with the appropriate escape characters for Excel.
 
-Then, add implementation details (steps, code snippets, and other technical information in a free form), or add a link to an existing document with implementation details. 
+**2. Copy via Export.**  The [onToolbarPreparing](https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/#onToolbarPreparing) event creates the "Copy via Export" button. Both [exportDataGrid(options)](https://js.devexpress.com/Documentation/ApiReference/Common/Utils/excelExporter/#exportDataGridoptions) and [customizeCell](https://js.devexpress.com/Documentation/ApiReference/Common/Object_Structures/ExportDataGridProps/#customizeCell) are used to access the processed data (group, summary, sort, filter, etc.). The data is aggregated into the clipboard with appropriate escape characters for Excel. This method allows you to achieve similar results with the [DataGrid's Export to ExcelJS](https://js.devexpress.com/Documentation/Guide/Widgets/DataGrid/Getting_Started_with_DataGrid/#Export_Data).
+
+You can easily modify the example to achieve different tasks. For example, copy values from a certain column only.
 
 ## Files to Review
 
 - **jQuery**
-    - [index.js](jQuery/src/index.js)
+    - [index.js](jQuery/index.js)
 - **Angular**
     - [app.component.html](Angular/src/app/app.component.html)
     - [app.component.ts](Angular/src/app/app.component.ts)
 - **Vue**
-    - [Home.vue](Vue/src/components/HomeContent.vue)
+    - [App.vue](Vue/src/App.vue)
 - **React**
-    - [App.tsx](React/src/App.tsx)
+    - [App.js](React/src/App.js)
 - **NetCore**    
-    - [Index.cshtml](ASP.NET%20Core/Views/Home/Index.cshtml)
+    - [Readme.md](ASP.NET%20Core/README.md)
 
 ## Documentation
 
-- link
-- link
-- ...
+- [DataGrid - Export Data](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/#Export_Data)
+- [DataGrid.export](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/export/)
 
 ## More Examples
 
-- link
-- link
-- ...
+- [DataGrid - Export to Excel - Overview](https://js.devexpress.com/Demos/WidgetsGallery/Demo/DataGrid/ExcelJSOverview/)
+- [Data - Export to Excel - Cell Customization](https://js.devexpress.com/Demos/WidgetsGallery/Demo/DataGrid/ExcelJSCellCustomization/jQuery/Light/)
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
 
-[<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=devextreme-examples-template&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=devextreme-examples-template&~~~was_helpful=no)
+[<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=devextreme-datagrid-copy-data-to-excel&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=devextreme-datagrid-copy-data-to-excel&~~~was_helpful=no)
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
