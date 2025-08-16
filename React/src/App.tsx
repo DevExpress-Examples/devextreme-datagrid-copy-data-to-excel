@@ -1,4 +1,4 @@
-import React, { Component, type RefObject } from 'react';
+import React, { useRef, useCallback } from 'react';
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
 import './App.css';
@@ -13,6 +13,7 @@ import DataGrid, {
   Summary,
   Button,
   type DataGridTypes,
+  type DataGridRef,
 } from 'devextreme-react/data-grid';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import notify from 'devextreme/ui/notify';
@@ -37,18 +38,10 @@ interface RowData {
   IsTested: boolean;
 }
 
-class App extends Component {
-  private readonly gridRef: RefObject<any>;
+export default function App(): JSX.Element {
+  const gridRef = useRef<DataGridRef>(null);
 
-  constructor(props: {}) {
-    super(props);
-    this.gridRef = React.createRef<any>();
-
-    this.copyViaExcelExport = this.copyViaExcelExport.bind(this);
-    this.toolbarCopy = this.toolbarCopy.bind(this);
-  }
-
-  rowCopy = (e: DataGridTypes.ColumnButtonClickEvent): void => {
+  const rowCopy = useCallback((e: DataGridTypes.ColumnButtonClickEvent): void => {
     const data = e.row?.data;
     if (!data) return;
 
@@ -65,35 +58,23 @@ class App extends Component {
     }, () => {
       notify('Row data was not copied. There are insufficient permissions for this action.', 'error', 500);
     });
-  };
+  }, []);
 
-  toolbarCopy = (e: DataGridTypes.ToolbarPreparingEvent): void => {
-    if (!e.toolbarOptions.items) {
-      e.toolbarOptions.items = [];
-    }
-    e.toolbarOptions.items.push({
-      widget: 'dxButton',
-      location: 'after',
-      options: {
-        hint: 'Copy via Export',
-        icon: 'unselectall',
-        onClick: this.copyViaExcelExport,
-      },
-    });
-  };
-
-  copyViaExcelExport = (): void => {
+  const copyViaExcelExport = useCallback((): void => {
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet('dummy');
     let str = '';
 
-    let col = this.grid.getVisibleColumns();
+    const gridInstance = gridRef.current?.instance();
+    if (!gridInstance) return;
+
+    let col = gridInstance.getVisibleColumns();
     // keep exportable columns and get the last-most column
     col = col.filter((x: any) => x.dataField !== undefined && x.allowExporting === true);
     const lastColumn = col[col.length - 1].dataField;
 
     exportDataGrid({
-      component: this.grid,
+      component: gridInstance,
       worksheet: sheet,
       customizeCell(options: any) {
         const { gridCell } = options;
@@ -148,70 +129,76 @@ class App extends Component {
       console.error('Export failed:', error);
       notify('Export failed. Please try again.', 'error', 1000);
     });
-  };
+  }, []);
 
-  get grid(): any {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return this.gridRef.current?.instance;
-  }
+  const toolbarCopy = useCallback((e: DataGridTypes.ToolbarPreparingEvent): void => {
+    if (!e.toolbarOptions.items) {
+      e.toolbarOptions.items = [];
+    }
+    e.toolbarOptions.items.push({
+      widget: 'dxButton',
+      location: 'after',
+      options: {
+        hint: 'Copy via Export',
+        icon: 'unselectall',
+        onClick: copyViaExcelExport,
+      },
+    });
+  }, [copyViaExcelExport]);
 
-  render(): JSX.Element {
-    return (
-      <DataGrid
-        ref={this.gridRef}
-        allowColumnResizing={true}
-        dataSource={dataSource}
-        onToolbarPreparing={this.toolbarCopy}>
-        <Column dataField="ID" width={200} />
-        <Column dataField="FirstName" />
-        <Column dataField="LastName" />
-        <Column dataField="HireDate" />
-        <Column dataField="Residence" groupIndex={0} />
-        <Column dataField="IsTested" />
-        <Column type="buttons">
-          <Button name="edit"></Button>
-          <Button name="delete"></Button>
-          <Button hint="Copy row" icon="copy" onClick={this.rowCopy}></Button>
-        </Column>
-        <Editing
-          mode="popup"
-          allowAdding={true}
-          allowUpdating={true}
-          allowDeleting={true}
-          useIcons={true}
-        />
-        <FilterRow visible={true} />
-        <GroupPanel visible={true} />
+  return (
+    <DataGrid
+      ref={gridRef}
+      allowColumnResizing={true}
+      dataSource={dataSource}
+      onToolbarPreparing={toolbarCopy}>
+      <Column dataField="ID" width={200} />
+      <Column dataField="FirstName" />
+      <Column dataField="LastName" />
+      <Column dataField="HireDate" />
+      <Column dataField="Residence" groupIndex={0} />
+      <Column dataField="IsTested" />
+      <Column type="buttons">
+        <Button name="edit"></Button>
+        <Button name="delete"></Button>
+        <Button hint="Copy row" icon="copy" onClick={rowCopy}></Button>
+      </Column>
+      <Editing
+        mode="popup"
+        allowAdding={true}
+        allowUpdating={true}
+        allowDeleting={true}
+        useIcons={true}
+      />
+      <FilterRow visible={true} />
+      <GroupPanel visible={true} />
 
-        <Summary>
-          <GroupItem
-            column="LastName"
-            summaryType="count"
-            name="Count"
-            alignByColumn={true} />
-          <GroupItem
-            column="LastName"
-            summaryType="count"
-            name="Count" />
-          <GroupItem
-            column="IsTested"
-            summaryType="count"
-            showInGroupFooter={true}
-            name="Count"
-            alignByColumn={true} />
-          <TotalItem
-            column="ID"
-            summaryType="count"
-            displayFormat="No. of employees: {0}"
-            name="No. of employees" />
-          <TotalItem
-            column="HireDate"
-            summaryType="count"
-            name="Dates" />
-        </Summary>
-      </DataGrid>
-    );
-  }
+      <Summary>
+        <GroupItem
+          column="LastName"
+          summaryType="count"
+          name="Count"
+          alignByColumn={true} />
+        <GroupItem
+          column="LastName"
+          summaryType="count"
+          name="Count" />
+        <GroupItem
+          column="IsTested"
+          summaryType="count"
+          showInGroupFooter={true}
+          name="Count"
+          alignByColumn={true} />
+        <TotalItem
+          column="ID"
+          summaryType="count"
+          displayFormat="No. of employees: {0}"
+          name="No. of employees" />
+        <TotalItem
+          column="HireDate"
+          summaryType="count"
+          name="Dates" />
+      </Summary>
+    </DataGrid>
+  );
 }
-
-export default App;
