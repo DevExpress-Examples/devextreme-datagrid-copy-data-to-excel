@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div>
     <DxDataGrid
       ref="gridRef"
       :data-source="dataSource"
@@ -79,6 +79,7 @@ import DxDataGrid, {
   DxTotalItem,
   DxFilterRow,
   DxSummary,
+  type DxDataGridTypes,
 } from 'devextreme-vue/data-grid';
 import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
@@ -87,7 +88,7 @@ import notify from 'devextreme/ui/notify';
 import * as ExcelJS from 'exceljs';
 import { data, type EmployeeData } from '../data';
 
-const gridRef = ref<any>(null);
+const gridRef = ref<DxDataGrid | null>(null);
 
 const dataSource = new DataSource({
   store: new ArrayStore({
@@ -96,8 +97,9 @@ const dataSource = new DataSource({
   }),
 });
 
-function rowCopy(e: any): void {
-  const rowData: EmployeeData = e.row.data;
+function rowCopy(e: DxDataGridTypes.ColumnButtonClickEvent): void {
+  const rowData: EmployeeData = e.row?.data;
+  if (!rowData) return;
   let str = '';
 
   for (const prop in rowData) {
@@ -127,7 +129,7 @@ const grid = computed(() => {
   return gridRef.value?.instance;
 });
 
-function toolbarCopy(e: any): void {
+function toolbarCopy(e: DxDataGridTypes.ToolbarPreparingEvent): void {
   if (!e.toolbarOptions.items) {
     e.toolbarOptions.items = [];
   }
@@ -147,15 +149,18 @@ function copyViaExcelExport(): void {
   const sheet = workbook.addWorksheet('dummy');
   let str = '';
 
-  let col = grid.value.getVisibleColumns();
+  const gridInstance = grid.value;
+  if (!gridInstance) return;
+
+  let col = gridInstance.getVisibleColumns();
   // keep exportable columns and get the last-most column
   col = col.filter((x: any) => x.dataField !== undefined && x.allowExporting === true);
   const lastColumn = col[col.length - 1].dataField;
 
   exportDataGrid({
-    component: grid.value,
+    component: gridInstance,
     worksheet: sheet,
-    customizeCell: function(options: any) {
+    customizeCell: function(options: { gridCell?: any; excelCell?: any }) {
       const { gridCell } = options;
       const field = gridCell.column.dataField;
 
@@ -188,6 +193,7 @@ function copyViaExcelExport(): void {
           str += (gridCell.value === undefined ? '\t' : `${gridCell.totalSummaryItemName}: ${gridCell.value}\t`);
           break;
         default:
+          // eslint-disable-next-line no-console
           console.log(
             'Unknown row type detected. Please check possible DataGrid breaking changes regarding rowType',
             gridCell
@@ -200,12 +206,17 @@ function copyViaExcelExport(): void {
       }
     }
   }).then(() => {
+    // eslint-disable-next-line no-console
     console.log(str);
     navigator.clipboard.writeText(str).then(() => {
       notify('Grid data copied to clipboard.', 'success', 500);
     }, () => {
       notify('Grid data was not copied. There are insufficient permissions for this action.', 'error', 500);
     });
+  }).catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error('Export failed:', error);
+    notify('Export failed. Please try again.', 'error', 1000);
   });
 }
 </script>
