@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
 import './App.css';
@@ -21,6 +21,7 @@ import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
 import * as ExcelJS from 'exceljs';
 import { data } from './data';
+import type { EmployeeData } from './data';
 
 const dataSource = new DataSource({
   store: new ArrayStore({
@@ -29,14 +30,6 @@ const dataSource = new DataSource({
   }),
 });
 
-interface RowData {
-  ID: number;
-  FirstName: string;
-  LastName: string;
-  HireDate: string;
-  Residence: string;
-  IsTested: boolean;
-}
 
 export default function App(): JSX.Element {
   const gridRef = useRef<DataGridRef>(null);
@@ -48,8 +41,8 @@ export default function App(): JSX.Element {
     let str = '';
 
     for (const prop in data) {
-      if (data[prop as keyof RowData] !== undefined) {
-        str += `${data[prop as keyof RowData]}\t`;
+      if (data[prop as keyof EmployeeData] !== undefined) {
+        str += `${data[prop as keyof EmployeeData]}\t`;
       }
     }
 
