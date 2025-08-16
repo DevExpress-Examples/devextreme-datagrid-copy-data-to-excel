@@ -1,0 +1,91 @@
+export interface EmployeeData {
+  ID: number;
+  FirstName: string;
+  LastName: string;
+  HireDate: string;
+  Residence: string;
+  IsTested: boolean;
+}
+
+export const data: EmployeeData[] = [
+  {
+    ID: 1,
+    FirstName: 'Reed',
+    LastName: 'Alston',
+    HireDate: '08/09/2020',
+    Residence: 'Levin',
+    IsTested: true,
+  },
+  {
+    ID: 2,
+    FirstName: 'Melodie',
+    LastName: 'Finch',
+    HireDate: '24/02/2020',
+    Residence: 'Offida',
+    IsTested: true,
+  },
+  {
+    ID: 3,
+    FirstName: 'Jack',
+    LastName: 'Sargent',
+    HireDate: '29/04/2020',
+    Residence: 'Carstairs',
+    IsTested: false,
+  },
+  {
+    ID: 4,
+    FirstName: 'Ashton',
+    LastName: 'Gilmore',
+    HireDate: '06/04/2020',
+    Residence: 'Levin',
+    IsTested: true,
+  },
+  {
+    ID: 5,
+    FirstName: 'Madison',
+    LastName: 'Levin',
+    HireDate: '03/08/2020',
+    Residence: 'Carstairs',
+    IsTested: true,
+  },
+  {
+    ID: 6,
+    FirstName: 'Hoyt',
+    LastName: 'Lewis',
+    HireDate: '07/02/2020',
+    Residence: 'Offida',
+    IsTested: true,
+  },
+  {
+    ID: 7,
+    FirstName: 'Anthony',
+    LastName: 'Galloway',
+    HireDate: '24/08/2020',
+    Residence: 'Carstairs',
+    IsTested: false,
+  },
+  {
+    ID: 8,
+    FirstName: 'Desiree',
+    LastName: 'Schmidt',
+    HireDate: '02/04/2020',
+    Residence: 'Levin',
+    IsTested: true,
+  },
+  {
+    ID: 9,
+    FirstName: 'Xenos',
+    LastName: 'Mcintosh',
+    HireDate: '21/07/2020',
+    Residence: 'Offida',
+    IsTested: true,
+  },
+  {
+    ID: 10,
+    FirstName: 'Buffy',
+    LastName: 'Calderon',
+    HireDate: '31/08/2020',
+    Residence: 'Carstairs',
+    IsTested: false,
+  },
+];
