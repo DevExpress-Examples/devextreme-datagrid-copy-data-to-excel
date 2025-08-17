@@ -30,7 +30,6 @@ const dataSource = new DataSource({
   }),
 });
 
-
 export default function App(): JSX.Element {
   const gridRef = useRef<DataGridRef>(null);
 
