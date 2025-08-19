@@ -21,16 +21,16 @@ You can easily modify the example to achieve different tasks. For example, copy 
 ## Files to Review
 
 - **jQuery**
-    - [index.js](jQuery/index.js)
+    - [index.js](jQuery/src/index.js)
 - **Angular**
     - [app.component.html](Angular/src/app/app.component.html)
     - [app.component.ts](Angular/src/app/app.component.ts)
 - **Vue**
-    - [App.vue](Vue/src/App.vue)
+    - [Home.vue](Vue/src/components/HomeContent.vue)
 - **React**
-    - [App.js](React/src/App.js)
+    - [App.tsx](React/src/App.tsx)
 - **NetCore**    
-    - [Readme.md](ASP.NET%20Core/README.md)
+    - [Readme.md](ASP.NET%20Core/Readme.md)
 
 ## Documentation
 
