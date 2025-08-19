@@ -29,8 +29,6 @@ You can easily modify the example to achieve different tasks. For example, copy 
     - [Home.vue](Vue/src/components/HomeContent.vue)
 - **React**
     - [App.tsx](React/src/App.tsx)
-- **NetCore**    
-    - [Readme.md](ASP.NET%20Core/Readme.md)
 
 ## Documentation
 
