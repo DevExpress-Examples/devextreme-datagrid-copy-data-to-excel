@@ -9,12 +9,19 @@
     <dxi-data-grid-column dataField="FirstName"></dxi-data-grid-column>
     <dxi-data-grid-column dataField="LastName"></dxi-data-grid-column>
     <dxi-data-grid-column dataField="HireDate"></dxi-data-grid-column>
-    <dxi-data-grid-column dataField="Residence" [groupIndex]="0"></dxi-data-grid-column>
+    <dxi-data-grid-column
+      dataField="Residence"
+      [groupIndex]="0"
+    ></dxi-data-grid-column>
     <dxi-data-grid-column dataField="IsTested"></dxi-data-grid-column>
     <dxi-data-grid-column type="buttons">
       <dxi-data-grid-button name="edit"></dxi-data-grid-button>
       <dxi-data-grid-button name="delete"></dxi-data-grid-button>
-      <dxi-data-grid-button hint="Copy row" icon="copy" [onClick]="rowCopy"></dxi-data-grid-button>
+      <dxi-data-grid-button
+        hint="Copy row"
+        icon="copy"
+        [onClick]="rowCopy"
+      ></dxi-data-grid-button>
     </dxi-data-grid-column>
 
     <dxo-data-grid-editing
