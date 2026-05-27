@@ -34,14 +34,14 @@ export default function App(): JSX.Element {
   const gridRef = useRef<DataGridRef>(null);
 
   const rowCopy = useCallback((e: DataGridTypes.ColumnButtonClickEvent): void => {
-    const data = e.row?.data;
-    if (!data) return;
+    const rowData = e.row?.data;
+    if (!rowData) return;
 
     let str = '';
 
-    for (const prop in data) {
-      if (data[prop as keyof EmployeeData] !== undefined) {
-        str += `${data[prop as keyof EmployeeData]}\t`;
+    for (const prop in rowData) {
+      if (rowData[prop as keyof EmployeeData] !== undefined) {
+        str += `${rowData[prop as keyof EmployeeData]}\t`;
       }
     }
 
