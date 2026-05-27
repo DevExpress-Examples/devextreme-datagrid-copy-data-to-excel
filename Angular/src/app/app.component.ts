@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { DxDataGridComponent, DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import {DxDataGridComponent, DxDataGridTypes, DxDataGridModule} from 'devextreme-angular/ui/data-grid';
 import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
@@ -9,6 +9,7 @@ import { data, type EmployeeData } from '../data';
 
 @Component({
   selector: 'app-root',
+  imports: [DxDataGridModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
