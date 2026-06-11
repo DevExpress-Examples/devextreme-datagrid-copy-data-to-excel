@@ -3,7 +3,6 @@ $(() => {
     const data = e.row.data;
     let str = '';
 
-    // eslint-disable-next-line no-restricted-syntax
     for (const prop in data) {
       if (data[prop] !== undefined) {
         str += `${data[prop]}\t`;
@@ -75,7 +74,6 @@ $(() => {
               : `${gridCell.totalSummaryItemName}: ${gridCell.value}\t`);
             break;
           default:
-            // eslint-disable-next-line no-console
             console.log('Unknown row type detected. Please check possible DataGrid breaking changes regarding rowType', gridCell);
             break;
         }
@@ -85,7 +83,6 @@ $(() => {
         }
       },
     }).then(() => {
-      // eslint-disable-next-line no-console
       console.log(str);
       navigator.clipboard.writeText(str).then(() => {
         DevExpress.ui.notify('Grid data copied to clipboard.', 'success', 500);

@@ -99,7 +99,6 @@ export default function App(): JSX.Element {
             str += gridCell.value === undefined ? '\t' : `${gridCell.totalSummaryItemName}: ${gridCell.value}\t`;
             break;
           default:
-            // eslint-disable-next-line no-console
             console.log('Unknown row type detected. Please check possible DataGrid breaking changes regarding rowType', gridCell);
             break;
         }
@@ -109,7 +108,6 @@ export default function App(): JSX.Element {
         }
       },
     }).then(() => {
-      // eslint-disable-next-line no-console
       console.log(str);
       navigator.clipboard.writeText(str).then(() => {
         notify('Grid data copied to clipboard.', 'success', 500);
@@ -117,7 +115,6 @@ export default function App(): JSX.Element {
         notify('Grid data was not copied. There are insufficient permissions for this action.', 'error', 500);
       });
     }).catch((error) => {
-      // eslint-disable-next-line no-console
       console.error('Export failed:', error);
       notify('Export failed. Please try again.', 'error', 1000);
     });
