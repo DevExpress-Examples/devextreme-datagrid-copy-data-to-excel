@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import {DxDataGridComponent, DxDataGridTypes, DxDataGridModule} from 'devextreme-angular/ui/data-grid';
 import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
@@ -11,6 +11,7 @@ import { data, type EmployeeData } from '../data';
   selector: 'app-root',
   imports: [DxDataGridModule],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
